@@ -9,3 +9,12 @@ class Ativo(models.Model):
     def __str__(self):
         return self.ativo
     
+class AnalisadorAtivo(models.Model):
+    ativo = models.CharField(max_length=10)
+    nome = models.CharField(max_length=100)
+    volume = models.IntegerField()
+    dh_consullta = models.DateTimeField()
+    preco = models.FloatField()
+
+    def __str__(self):
+        return self.ativo
