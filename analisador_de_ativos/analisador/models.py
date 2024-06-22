@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+class Ativo(models.Model):
+    ativo = models.CharField(max_length=10)
+    nome = models.CharField(max_length=100)
+    volume = models.IntegerField()
+    setor = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.ativo
+    
