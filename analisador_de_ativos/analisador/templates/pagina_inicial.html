@@ -1,100 +1,52 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Pagina Inicial</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .info-box {
-            padding: 20px;
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Ativo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-5">Pagina Inicial</h1>
-        <form>
-            <div class="form-column">
-                <div class="form-group col-md-6">
-                    <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputNomeAtivo">Nome Ativo</label>
-                    <input type="text" class="form-control" id="inputNomeAtivo">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputVolume">Volume</label>
-                  <input type="number"  class="form-control" id="inputVolume">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputLimSuperior">Limite Superior</label>
-                  <input type="number" step="0.01" class="form-control" id="inputLimSuperior">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputLimInferior">Limite Inferior</label>
-                  <input type="number" step="0.01" class="form-control" id="inputLimInferior">
-                </div>
+        <h1 class="mb-4">Cadastro de Ativo</h1>
+        <form id="ativoForm">
+            <div class="form-group">
+                <label for="email">Seu email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
             </div>
-            <div class="col-md-1 text-right">
-              <button type="submit" class="btn btn-primary">Enviar</button>
+            <div class="form-group">
+                <label for="ativoSelect">Selecione um ativo:</label>
+                <select id="ativoSelect" class="form-control">
+                <option value="">Selecione...</option>
+                {% for ativo in ativos %}
+                    <option value="{{ ativo }}">{{ ativo }}</option>
+                {% endfor %}
+                </select>
             </div>
+            <div class="form-group">
+                <label for="maior-preco">Maior preço para o ativo</label>
+                <input type="number" step="0.01" class="form-control" id="maior-preco" name="maior-preco" required>
+            </div>
+            <div class="form-group">
+                <label for="menor-preco">Menor preço para o ativo</label>
+                <input type="number" step="0.01" class="form-control" id="menor-preco" name="menor-preco" required>
+            </div>
+            <div class="form-group">
+                <label for="volume">Volume</label>
+                <input type="number" class="form-control" id="volume" name="volume" required>
+            </div>
+            <div class="form-group">
+                <label for="periodiciadade">Periodicidade da checagem em minutos</label>
+                <input type="number" class="form-control" id="periodiciadade" name="periodiciadade" required></input>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
-        
-        <div class="mt-5">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <h5>Informação 1</h5>
-                        <p>Detalhes da informação 1...</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <h5>Informação 2</h5>
-                        <p>Detalhes da informação 2...</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <h5>Informação 3</h5>
-                        <p>Detalhes da informação 3...</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <h5>Informação 4</h5>
-                        <p>Detalhes da informação 4...</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <h5>Informação 5</h5>
-                        <p>Detalhes da informação 5...</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <h5>Informação 6</h5>
-                        <p>Detalhes da informação 6...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="cardsContainer" class="mt-5"></div>
     </div>
-    
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="{% static 'pagina_inicial.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
